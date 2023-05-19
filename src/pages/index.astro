@@ -1,71 +1,32 @@
 ---
+import ChargeSection from '../components/ChargeSection.astro'
+import HeroSection from '../components/HeroSection.astro'
+import LandingHeader from '../components/LandingHeader.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Tesla - El coche que quieres.">
-  <main>
-    <header
-      class="py-3 px-12 flex items-center justify-between fixed top-0 w-full z-20 text-white"
-    >
-      <div class="flex flex-1">
-        <svg
-          class="w-32 h-6"
-          viewBox="0 0 342 35"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7h24zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zm0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zm0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zM308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7z"
-            fill="currentColor"></path>
-        </svg>
-      </div>
-      <nav>
-        <ul
-          class="flex text-base [&>li>a]:inline-block [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2"
-        >
-          <li><a href="#">Model S</a></li>
-          <li><a href="#">Model 3</a></li>
-          <li><a href="#">Model X</a></li>
-          <li><a href="#">Model Y</a></li>
-          <li><a href="#">Powerwall</a></li>
-          <li><a href="#">Carga</a></li>
-        </ul>
-      </nav>
-      <nav class="flex flex-1 justify-end">
-        <ul
-          class="flex text-base [&>li>a]:inline-block [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2"
-        >
-          <li><a href="#">Soporte</a></li>
-          <li><a href="#">Tienda</a></li>
-          <li><a href="#">Cuenta</a></li>
-          <li><a href="#">Menú</a></li>
-        </ul>
-      </nav>
-    </header>
-    <section
-      class="bg-black h-screen w-screen text-center relative overflow-hidden"
-    >
-      <div
-        class="relative z-30 h-full flex flex-col justify-between items-center"
-      >
-        <header class="pt-28">
-          <h2 class="text-white text-[43px] font-medium">Disfrute de Tesla</h2>
-          <p class="text-white text-base">
-            Programe una prueba de conducción hoy mismo
-          </p>
-        </header>
-        <footer class="pb-[88px] flex-1 flex flex-col items-center justify-end">
-          <a
-            href="#"
-            class="border-4 border-white bg-white/5 backdrop-blur-sm rounded font-medium text-white py-[7px] px-12 hover:bg-white hover:text-black transition-colors duration-300"
-            >Prueba de conducción</a
-          >
-        </footer>
-      </div>
-      <div class="absolute inset-0 h-full w-full z-10">
-        <video autoplay muted loop class="h-full w-full object-cover">
-          <source src="/video.webm" type="video/mp4" />
-        </video>
-      </div>
-    </section>
+  <LandingHeader />
+  <main
+    class="snap-y snap-mandatory relative w-full h-screen overflow-auto scroll-smooth"
+  >
+    <div class="snap-center">
+      <HeroSection />
+    </div>
+    <div class="snap-center">
+      <ChargeSection />
+    </div>
+    <div class="snap-center">
+      <HeroSection />
+    </div>
+    <div class="snap-center">
+      <ChargeSection />
+    </div>
+    <div class="snap-center">
+      <HeroSection />
+    </div>
+    <div class="snap-center">
+      <HeroSection />
+    </div>
   </main>
 </Layout>

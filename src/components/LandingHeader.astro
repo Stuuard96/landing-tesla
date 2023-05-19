@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro'
+---
+
+<header
+  class="w-full py-[9px] px-12 flex justify-between items-center fixed top-0 z-20 text-white transition-opacity duration-500 opacity-0"
+  id="landing-header"
+>
+  <a class="flex flex-1 items-center self-stretch cursor-pointer" href="#">
+    <Logo />
+  </a>
+  <nav>
+    <ul
+      class="flex text-sm [&>li>a]:inline-block [&>li>a]:text-inherit [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors duration-300"
+    >
+      <li><a href="#">Model S</a></li>
+      <li><a href="#">Model 3</a></li>
+      <li><a href="#">Model X</a></li>
+      <li><a href="#">Model Y</a></li>
+      <li><a href="#">Powerwall</a></li>
+      <li><a href="#">Carga</a></li>
+    </ul>
+  </nav>
+  <nav class="flex flex-1 items-center self-stretch justify-end">
+    <ul
+      class="flex text-sm [&>li>a]:inline-block [&>li>a]:text-inherit [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors duration-300"
+    >
+      <li><a href="#">Soporte</a></li>
+      <li><a href="#">Tienda</a></li>
+      <li><a href="#">Cuenta</a></li>
+      <li><a href="#">Menú</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector('#landing-header') as HTMLElement
+  const oberserOptions = {
+    root: null, // El viewport, cuando este en pantalla
+    rootMargin: '0px', // En cuanto se vea el elemento
+    threshold: 0.9 // Pocentaje de visibilidad: 90% del elemento
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry
+      if (isIntersecting) {
+        const color = entry.target.getAttribute('data-header-color')
+        header.style.color = color
+      }
+    })
+  }, oberserOptions)
+
+  window.addEventListener('load', () => {
+    header.classList.add('opacity-100')
+  })
+
+  const sectionElements = document.querySelectorAll('.landing-section')
+  sectionElements.forEach((section) => {
+    observer.observe(section)
+  })
+</script>
