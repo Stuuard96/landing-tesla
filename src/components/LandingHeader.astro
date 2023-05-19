@@ -3,15 +3,18 @@ import Logo from './Logo.astro'
 ---
 
 <header
-  class="w-full py-[9px] px-12 flex justify-between items-center fixed top-0 z-20 text-white transition-opacity duration-500 opacity-0"
+  class="w-full py-[9px] px-12 flex justify-between items-center fixed z-40 text-white transition-opacity duration-500 opacity-0"
   id="landing-header"
 >
-  <a class="flex flex-1 items-center self-stretch cursor-pointer" href="#">
+  <a
+    class="inline-flex flex-1 items-center self-stretch cursor-pointer"
+    href="#"
+  >
     <Logo />
   </a>
   <nav>
     <ul
-      class="flex text-sm [&>li>a]:inline-block [&>li>a]:text-inherit [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors duration-300"
+      class="flex text-sm [&>li>a]:inline-flex [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors [&>li>a]:duration-700"
     >
       <li><a href="#">Model S</a></li>
       <li><a href="#">Model 3</a></li>
@@ -23,7 +26,7 @@ import Logo from './Logo.astro'
   </nav>
   <nav class="flex flex-1 items-center self-stretch justify-end">
     <ul
-      class="flex text-sm [&>li>a]:inline-block [&>li>a]:text-inherit [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors duration-300"
+      class="flex text-sm [&>li>a]:inline-flex [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors [&>li>a]:duration-700"
     >
       <li><a href="#">Soporte</a></li>
       <li><a href="#">Tienda</a></li>
@@ -31,11 +34,45 @@ import Logo from './Logo.astro'
       <li><a href="#">Menú</a></li>
     </ul>
   </nav>
+  <div
+    id="menu-backdrop"
+    menuBackDrop.style.transition="all 0.5s ease-in-out"
+    class="absolute bg-black/5 backdrop-blur-lg rounded top-[var(--top)] left-[var(--left)] w-[var(--width)] h-[var(--height)] -z-50 opacity-0 visible:hidden transition-all duration-500 ease-in-out"
+  >
+  </div>
 </header>
-
+<style>
+  #menu-backdrop.transition-active {
+    transition: all 0.5s ease-in-out;
+  }
+</style>
 <script>
   const header = document.querySelector('#landing-header') as HTMLElement
   const sectionElements = document.querySelectorAll('.landing-section')
+  const listItem = document.querySelectorAll('#landing-header li')
+  const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
+
+  window.addEventListener('load', () => {
+    header.classList.remove('opacity-0')
+    header.classList.add('opacity-100')
+  })
+
+  listItem.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const { left, top, width, height } = item.getBoundingClientRect()
+      menuBackDrop.style.setProperty('--left', `${left}px`)
+      menuBackDrop.style.setProperty('--top', `${top}px`)
+      menuBackDrop.style.setProperty('--width', `${width}px`)
+      menuBackDrop.style.setProperty('--height', `${height}px`)
+      menuBackDrop.style.opacity = '1'
+      menuBackDrop.style.visibility = 'visible'
+    })
+
+    item.addEventListener('mouseleave', () => {
+      menuBackDrop.style.opacity = '0'
+      menuBackDrop.style.visibility = 'hidden'
+    })
+  })
 
   const oberserOptions = {
     root: null, // El viewport, cuando este en pantalla
@@ -54,10 +91,5 @@ import Logo from './Logo.astro'
 
   sectionElements.forEach((section) => {
     observer.observe(section)
-  })
-
-  window.addEventListener('load', () => {
-    header.classList.remove('opacity-0')
-    header.classList.add('opacity-100')
   })
 </script>
