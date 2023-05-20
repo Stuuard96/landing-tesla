@@ -14,7 +14,7 @@ import Logo from './Logo.astro'
   </a>
   <nav>
     <ul
-      class="flex text-sm [&>li>a]:inline-flex [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors [&>li>a]:duration-700"
+      class="flex text-sm [&>li>a]:inline-flex [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:transition-colors [&>li>a]:duration-500"
     >
       <li><a href="#">Model S</a></li>
       <li><a href="#">Model 3</a></li>
@@ -41,11 +41,7 @@ import Logo from './Logo.astro'
   >
   </div>
 </header>
-<style>
-  #menu-backdrop.transition-active {
-    transition: all 0.5s ease-in-out;
-  }
-</style>
+
 <script>
   const header = document.querySelector('#landing-header') as HTMLElement
   const sectionElements = document.querySelectorAll('.landing-section')

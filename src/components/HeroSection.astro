@@ -1,25 +1,62 @@
-<section
-  class="landing-section bg-black h-screen text-center relative overflow-hidden"
-  data-header-color="white"
->
-  <div class="relative z-30 h-full flex flex-col justify-between items-center">
-    <header class="pt-[100px]">
-      <h2 class="text-white text-[39px] font-medium">Disfrute de Tesla</h2>
-      <p class="text-white text-sm">
-        Programe una prueba de conducción hoy mismo
-      </p>
-    </header>
-    <footer class="pb-20 flex-1 flex flex-col items-center justify-end">
-      <a
-        href="#"
-        class="border-[3px] border-white bg-white/5 backdrop-blur-sm rounded font-medium text-sm text-white py-[7px] px-[46px] hover:bg-white hover:text-black transition-colors duration-300"
-        >Prueba de conducción</a
-      >
-    </footer>
-  </div>
-  <div class="absolute inset-0 h-full w-full z-10">
-    <video autoplay muted loop class="h-full w-full object-cover">
-      <source src="/video.webm" type="video/mp4" />
-    </video>
-  </div>
-</section>
+---
+import Section from './Section.astro'
+---
+
+<Section title="Disfrute de Tesla" color="white">
+  <p slot="subtitle" class="text-white text-sm opacity-0 animated-header-p">
+    Programe una prueba de conducción hoy mismo.
+  </p>
+  <footer
+    slot="footer"
+    class="pb-20 flex-1 flex flex-col items-center justify-end animated-footer opacity-0"
+  >
+    <a
+      href="#"
+      class="border-[3px] border-white bg-white/5 backdrop-blur-sm rounded font-medium text-sm text-white py-[7px] px-[46px] hover:bg-white hover:text-black transition-colors duration-300"
+      >Prueba de conducción</a
+    >
+  </footer>
+  <video
+    slot="background"
+    autoplay
+    muted
+    loop
+    class="h-full w-full object-cover"
+  >
+    <source src="/video.webm" type="video/mp4" />
+  </video>
+</Section>
+
+<style>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInP {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .animated-header-p {
+    animation: fadeInP 1s ease-in-out;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  .animated-footer {
+    animation: fadeIn 1s ease-in-out;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+  }
+</style>

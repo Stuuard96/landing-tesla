@@ -1,0 +1,43 @@
+---
+const { color, title } = Astro.props
+const textColor = `text-${color}`
+---
+
+<section
+  class="landing-section bg-black h-screen text-center relative overflow-hidden"
+  data-header-color={color}
+>
+  <div class="relative z-30 h-full flex flex-col justify-between items-center">
+    <header class="pt-[100px] animated-header-h2">
+      <h2
+        class={`${textColor} text-[39px] font-medium animated-header-h2 opacity-0`}
+      >
+        {title}
+      </h2>
+      <slot name="subtitle" />
+    </header>
+    <slot name="footer" />
+  </div>
+  <div class="absolute inset-0 h-full w-full z-10">
+    <slot name="background" />
+  </div>
+</section>
+
+<style>
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animated-header-h2 {
+    animation: slideIn 1s ease-in-out;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+</style>
